@@ -1,4 +1,4 @@
-import CoreMotion
+@preconcurrency import CoreMotion
 import AltusKit
 
 /// Live `MotionSampleProviding` implementation, wrapping `CMMotionManager`.

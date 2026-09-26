@@ -39,7 +39,7 @@ final class LiftSetSessionController: ObservableObject {
         streamTask = Task { [weak self] in
             guard let self else { return }
             for await sample in motionProvider.makeStream() {
-                await self.consume(sample)
+                self.consume(sample)
             }
         }
     }
