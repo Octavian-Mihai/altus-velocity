@@ -1,5 +1,7 @@
 # Altus
 
+<img src="docs/screenshots/app-icon.png" width="120" height="120" alt="Altus app icon" />
+
 Real-time vertical jump and velocity-based training (VBT) tracking, using only an iPhone and Apple Watch — no external hardware.
 
 Altus turns the Watch's own accelerometer and gyroscope into a jump-height meter and a barbell-speed proxy, streaming live numbers to both devices at once while you train.
