@@ -30,6 +30,7 @@ targets:
         CURRENT_PROJECT_VERSION: "1"
         TARGETED_DEVICE_FAMILY: "1"
         SWIFT_EMIT_LOC_STRINGS: "YES"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     info:
       path: AltusApp/Info.plist
       properties:
@@ -58,6 +59,7 @@ targets:
         CURRENT_PROJECT_VERSION: "1"
         SWIFT_EMIT_LOC_STRINGS: "YES"
         SKIP_INSTALL: "NO"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     info:
       path: AltusWatch/Info.plist
       properties:
