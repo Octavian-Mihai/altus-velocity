@@ -1,12 +1,52 @@
 # Altus
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for an architecture diagram.
-
 <img src="docs/screenshots/app-icon.png" width="120" height="120" alt="Altus app icon" />
 
 Real-time vertical jump and velocity-based training (VBT) tracking, using only an iPhone and Apple Watch — no external hardware.
 
 Altus turns the Watch's own accelerometer and gyroscope into a jump-height meter and a barbell-speed proxy, streaming live numbers to both devices at once while you train.
+
+
+## Architecture
+
+```mermaid
+flowchart LR
+    subgraph Watch["AltusWatch (watchOS)"]
+        CM[CoreMotionProvider<br/>accel + gyro]
+        WS[WorkoutSessionManager<br/>HKWorkoutSession]
+        WC[WatchConnectivityManager]
+        UIW[Watch UI]
+    end
+
+    subgraph Kit["Packages/AltusKit (shared)"]
+        Sig[SignalFilters]
+        Jump[JumpDetector<br/>flight-time h = g·t²/8]
+        Rep[RepDetector]
+        Vel[VelocityIntegrator]
+        RIR[RIREstimator]
+        Pay["LiveMetricsPayload<br/>SessionEnvelope"]
+        Mod[Models: JumpResult · RepResult]
+    end
+
+    subgraph Phone["AltusApp (iOS)"]
+        PC[PhoneConnectivityManager]
+        UIP[ContentView]
+        SD[(SwiftData<br/>ModelContainer+Altus)]
+    end
+
+    CM --> Sig --> Jump
+    Sig --> Rep --> Vel --> RIR
+    WS -.keeps sensors alive.-> CM
+    Jump --> Mod
+    Vel --> Mod
+    Mod --> Pay --> WC
+    WC <-->|WatchConnectivity| PC
+    PC --> UIP
+    PC --> SD
+    Mod --> UIW
+```
+
+More detail: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 ## What it does
 
