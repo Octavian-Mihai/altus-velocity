@@ -1,5 +1,7 @@
 # Altus
 
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for an architecture diagram.
+
 <img src="docs/screenshots/app-icon.png" width="120" height="120" alt="Altus app icon" />
 
 Real-time vertical jump and velocity-based training (VBT) tracking, using only an iPhone and Apple Watch — no external hardware.
